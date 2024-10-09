@@ -25,4 +25,4 @@ Berikut adalah kesimpulan dari penggunaan masing-masing direktif kondisional di 
 - Gunakan **`v-if`/`v-else-if`/`v-else`** untuk pengendalian kondisi yang signifikan atau elemen yang membutuhkan pembaruan DOM penuh.
 - Gunakan **`v-show`** jika Anda hanya ingin menyembunyikan/menampilkan elemen tanpa memanipulasi DOM, terutama untuk elemen yang sering berubah visibilitasnya.
 
-Dengan memilih antara `v-if` dan `v-show` dengan tepat, Anda bisa mengoptimalkan kinerja aplikasi Vue.js Anda sesuai kebutuhan.
+Dengan memilih antara `v-if` dan `v-show` dengan tepat, Anda bisa mengoptimalkan kinerja aplikasi Vue.js sesuai kebutuhan.

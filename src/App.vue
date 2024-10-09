@@ -19,19 +19,27 @@
       <p>Ini adalah pesan yang bisa disembunyikan atau ditampilkan.</p>
     </div>
   </div>
+
+  <br>
+  <div class="" v-show="kondisilampu">Lampu hidup</div>
+  <button @click="togleLampu">matikan</button>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      role: 'guest', // Nilai awal role
-      isVisible: true // Untuk v-show
+      role: 'guest', 
+      isVisible: true, 
+      kondisilampu: false
     };
   },
   methods: {
     toggleVisibility() {
       this.isVisible = !this.isVisible;
+    },
+    togleLampu() {
+      this.kondisilampu = !this.kondisilampu
     }
   }
 };
