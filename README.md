@@ -11,9 +11,9 @@ Dalam Vue.js, terdapat tiga directive utama yang sering digunakan: `v-html`, `v-
 ### Ringkasan:
 - **Keamanan**: Gunakan `v-html` dengan hati-hati; `v-text` aman untuk teks.
 - **Dinamisme**: `v-bind` untuk atribut, `v-text` untuk teks biasa, dan `v-html` hanya untuk HTML dinamis yang aman.
-- **Kapan Menggunakan** 
-    **Gunakan v-bind untuk atribut.**
-    **Gunakan v-text untuk teks biasa.**
-    **Gunakan v-html hanya jika perlu menampilkan HTML dinamis yang aman.**
+# Kapan Menggunakan** 
+* Gunakan v-bind untuk atribut
+* Gunakan v-text untuk teks biasa.
+* Gunakan v-html hanya jika perlu menampilkan HTML dinamis yang aman.
   
 Dengan pemahaman ini, Anda dapat membuat antarmuka pengguna yang dinamis dan aman di Vue.js.
