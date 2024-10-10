@@ -1,55 +1,20 @@
-### Kesimpulan Penggunaan `v-model` di Vue.js
+### Best Practices dalam Penggunaan Computed Properties
 
-`v-model` adalah fitur yang sangat kuat di Vue.js yang memungkinkan **two-way data binding** antara elemen input pengguna dan data di komponen. Ini menyederhanakan proses sinkronisasi antara input form (seperti teks, checkbox, radio button, dropdown) dan data dalam aplikasi Vue. 
+1. **Gunakan untuk Logika yang Butuh Di-cache**:
+   - Ideal digunakan untuk data yang hasilnya bergantung pada perhitungan dari data lain dan hasil tersebut perlu disimpan hingga ada perubahan pada dependensi.
 
-Dengan `v-model`, perubahan yang dilakukan oleh pengguna pada input UI langsung tercermin dalam data komponen, dan sebaliknya, setiap perubahan data di komponen secara otomatis diperbarui di UI. Modifier seperti `.lazy`, `.number`, dan `.trim` memberi fleksibilitas tambahan dalam menangani kasus-kasus khusus.
+2. **Jangan Gunakan untuk Operasi Asinkron**:
+   - Computed properties tidak cocok untuk operasi asinkron seperti pemanggilan API. Sebaiknya gunakan **methods** atau **lifecycle hooks** untuk operasi tersebut.
 
-### Best Practices Penggunaan `v-model`
+3. **Pisahkan Getter dan Setter Jika Dibutuhkan**:
+   - Jika sebuah properti perlu dimanipulasi melalui input pengguna, gunakan **getter** dan **setter** untuk computed properties agar logika pembacaan dan penulisan data lebih rapi dan terstruktur.
 
-1. **Gunakan `v-model` untuk Two-Way Data Binding**:
-   - Pastikan `v-model` digunakan ketika kamu butuh **sinkronisasi dua arah** antara input dan data. Ini berguna untuk input form seperti teks, checkbox, radio button, dan dropdown.
+4. **Hindari Computed Properties yang Berat**:
+   - Jika perhitungan yang dilakukan sangat berat atau rumit, coba sederhanakan logikanya atau pindahkan ke method untuk kontrol yang lebih baik.
 
-   ```vue
-   <input v-model="message" placeholder="Ketik pesan di sini">
-   ```
+5. **Gunakan di Dalam Loop dengan Bijak**:
+   - Computed properties yang diakses dalam loop atau kondisi dengan banyak elemen harus digunakan dengan hati-hati, terutama jika mereka bergantung pada banyak data.
 
-2. **Batasi Penggunaan Two-Way Data Binding Jika Tidak Diperlukan**:
-   - Jangan gunakan `v-model` jika tidak memerlukan binding dua arah. Jika kamu hanya perlu memanipulasi data di satu arah, gunakan binding biasa atau event listener.
+### Kesimpulan
 
-   ```vue
-   <input :value="message" @input="handleInput">
-   ```
-
-3. **Pahami Kapan Menggunakan Modifiers**:
-   - **`.lazy`**: Gunakan jika kamu ingin memperbarui data hanya setelah input kehilangan fokus, mengurangi performa aplikasi yang terus-menerus memproses perubahan di input.
-   
-     ```vue
-     <input v-model.lazy="message" placeholder="Tulis setelah blur">
-     ```
-
-   - **`.number`**: Gunakan pada input angka untuk memastikan bahwa nilai yang di-bind selalu bertipe angka, bukan string.
-
-     ```vue
-     <input v-model.number="age" type="number">
-     ```
-
-   - **`.trim`**: Gunakan untuk menghilangkan spasi di awal dan akhir input. Cocok untuk mengolah data yang tidak boleh ada spasi tambahan.
-   
-     ```vue
-     <input v-model.trim="name" placeholder="Tanpa spasi di ujung">
-     ```
-
-4. **Hati-hati dengan `v-model` pada Objek Kompleks**:
-   - Jika mengikat data kompleks seperti objek atau array, pastikan memahami cara mengubah data secara langsung agar tidak menimbulkan **side effects** yang sulit dilacak.
-
-5. **Penanganan Input yang Kompleks dengan Komponen Tersendiri**:
-   - Untuk input form yang lebih kompleks, pertimbangkan untuk membuat komponen terpisah dan menggunakan `v-model` pada props dan event khusus untuk menjaga kode tetap modular.
-
-   ```vue
-   <custom-input v-model="customValue"></custom-input>
-   ```
-
-6. **Pertimbangkan Validasi Data Secara Real-Time**:
-   - Dalam aplikasi yang memerlukan validasi input, `v-model` dapat digunakan untuk memvalidasi data secara real-time saat pengguna mengetik, namun hindari logika yang terlalu berat dalam pemrosesan input agar UI tetap responsif.
-
-Dengan menerapkan praktik-praktik terbaik ini, penggunaan `v-model` di Vue.js akan lebih efisien, terstruktur, dan dapat meningkatkan performa serta pemeliharaan aplikasi Vue.
+**Computed properties** di Vue.js adalah fitur yang sangat berguna untuk memisahkan logika perhitungan data dari template, membuat aplikasi lebih efisien karena hanya dihitung ulang saat data dependensinya berubah. Dengan menggunakan `computed`, kamu dapat memastikan bahwa aplikasi bekerja secara optimal tanpa perhitungan ulang yang tidak perlu.
